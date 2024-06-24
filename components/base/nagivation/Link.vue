@@ -16,7 +16,7 @@
         <span
           class="navigation__link_label text-muted-foreground group-hover:text-muted-foreground"
         >
-          {{ label }}{{ keysPressed }}
+          {{ label }}
         </span>
         <UiKbd
           class="nagivation__link_kbd z-50 ml-10"
