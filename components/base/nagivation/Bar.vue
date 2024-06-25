@@ -12,12 +12,7 @@
     </div>
 
     <div class="navbar__menu_bottom">
-      <BaseNagivationLink
-        v-for="link in bottomLinks"
-        :icon="link.icon"
-        :link
-        :size
-      />
+      <BaseNagivationLink v-for="link in bottomLinks" :link :size />
     </div>
     <UiSeparator class="my-2" />
     <BaseNagivationAvatar :size />

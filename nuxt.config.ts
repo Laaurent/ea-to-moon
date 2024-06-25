@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@nuxtjs/color-mode",
     "@pinia/nuxt",
+    "@nuxtjs/i18n",
   ],
   css: ["~/assets/css/main.scss"],
   vite: {
@@ -46,5 +47,10 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: "",
+  },
+  i18n: {
+    vueI18n: "./i18n.config.ts", // if you are using custom path, default
+    locales: ["en", "fr"], // used in URL path prefix
+    defaultLocale: "en", // default locale of your project for Nuxt pages and routings
   },
 });
