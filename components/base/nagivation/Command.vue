@@ -22,6 +22,7 @@
             v-for="link in links"
             :value="link.name"
             class="flex items-center gap-2"
+            @click="routeTo(link.path)"
           >
             <component :is="link.icon" size="16" />
             <span>{{ link.name }}</span>
@@ -42,6 +43,8 @@ import { useMagicKeys } from "@vueuse/core";
 import { useNavbarStore } from "~/store/navbar";
 import { Search } from "lucide-vue-next";
 
+const router = useRouter();
+
 // STORE
 const store = useNavbarStore();
 const { links, showCommand, isSmall } = toRefs(store);
@@ -57,4 +60,9 @@ const { Meta_K, Ctrl_K } = useMagicKeys({
 watch([Meta_K, Ctrl_K], (v) => {
   if (v[0] || v[1]) toggleShowCommand();
 });
+
+function routeTo(link: string) {
+  toggleShowCommand();
+  router.push(link);
+}
 </script>
