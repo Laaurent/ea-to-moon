@@ -8,40 +8,47 @@
     <UiSeparator class="my-2" />
     <div class="navbar__menu">
       <BaseNagivationCommand :size class="w-full mb-2" />
-      <BaseNagivationLink v-for="link in links.top" v-bind="link" :size />
+      <BaseNagivationLink v-for="link in topLinks" :link :size />
     </div>
 
     <div class="navbar__menu_bottom">
-      <BaseNagivationLink v-for="link in links.bottom" v-bind="link" :size />
+      <BaseNagivationLink v-for="link in bottomLinks" :link :size />
     </div>
     <UiSeparator class="my-2" />
-    <BaseNagivationAvatar :size="size" />
+    <BaseNagivationAvatar :size />
   </nav>
 </template>
 
 <script setup lang="ts">
-import { Home, LayoutDashboard, Bolt, PanelLeft } from "lucide-vue-next";
+import { useWindowSize, whenever, useMagicKeys } from "@vueuse/core";
+import { PanelLeft } from "lucide-vue-next";
+import { useNavbarStore } from "~/store/navbar";
 
-const size = ref("large");
+const { width } = useWindowSize();
+const { Ctrl, Meta } = useMagicKeys();
 
-const toggleSize = () => {
-  size.value = size.value === "small" ? "large" : "small";
-};
+// PROPS
+const topLinks = computed(() =>
+  links.value.filter((link) => link.position === "top")
+);
+const bottomLinks = computed(() =>
+  links.value.filter((link) => link.position === "bottom")
+);
 
-const links = {
-  top: [
-    { to: "/", icon: Home, label: "Home", shortCut: ["⌘", "1"] },
-    {
-      to: "/dashboard",
-      icon: LayoutDashboard,
-      label: "Dashboard",
-      shortCut: ["⌘", "2"],
-    },
-  ],
-  bottom: [
-    { to: "/settings", icon: Bolt, label: "Settings", shortCut: ["⌘", "9"] },
-  ],
-};
+// STORE
+const store = useNavbarStore();
+const { links, size } = storeToRefs(store);
+const { toggleSize, toggleShowKeys } = store;
+
+whenever(width, () => {
+  if (width.value < 1024) {
+    toggleSize("small");
+  }
+});
+
+watch([Ctrl, Meta], (v) => {
+  if (v) toggleShowKeys();
+});
 </script>
 
 <style scoped lang="scss">

@@ -4,35 +4,36 @@
       <NuxtLink
         @mouseenter="toggleHover"
         @mouseleave="toggleHover"
-        :to="to"
+        :to="link.path"
         class="navigation__link group flex hover:bg-secondary text-muted-foreground hover:text-muted-foreground hover:font-medium"
         :class="{ isSmall }"
       >
         <span
-          class="navigation__link_icon text-muted-foreground group-hover:text-muted-foreground mr-5"
+          class="navigation__link_icon text-muted-foreground group-hover:text-muted-foreground"
+          :class="isSmall ? 'mr-5' : ''"
         >
-          <component :is="icon" />
+          <component :is="link.icon" />
         </span>
         <span
           class="navigation__link_label text-muted-foreground group-hover:text-muted-foreground"
         >
-          {{ label }}
+          {{ link.name }}
         </span>
         <UiKbd
           class="nagivation__link_kbd z-50 ml-10"
-          v-if="(isHover && !isSmall) || showShortcut"
+          v-if="(isHover && !isSmall) || showKeys"
         >
-          <span class="text-xs">{{ shortCut[0] }}</span
-          >+&nbsp;{{ shortCut[1] }}
+          <span class="text-xs">{{ link.shortCut[0] }}</span
+          >+&nbsp;{{ link.shortCut[1] }}
         </UiKbd>
       </NuxtLink>
     </template>
     <template v-slot:content>
       <span class="">
-        {{ label }}&nbsp;
+        {{ link.name }}&nbsp;
         <UiKbd>
-          <span class="text-xs">{{ shortCut[0] }}</span>
-          &nbsp;{{ shortCut[1] }}
+          <span class="text-xs">{{ link.shortCut[0] }}</span>
+          &nbsp;{{ link.shortCut[1] }}
         </UiKbd>
       </span>
     </template>
@@ -40,56 +41,44 @@
 </template>
 
 <script setup lang="ts">
+import { useNavbarStore } from "~/store/navbar";
 import { useMagicKeys } from "@vueuse/core";
+import type { INavbarLink } from "~/types/navigation";
+const router = useRouter();
 
-/* const keysPressed = inject("keysPressed"); */
-
+//PROPS
 const props = defineProps({
-  to: {
-    type: String,
+  link: {
+    type: Object as PropType<INavbarLink>,
     required: true,
-  },
-  icon: {},
-  label: {
-    type: String,
-    default: "",
   },
   size: {
     type: String,
     default: "small",
   },
-  shortCut: {
-    type: Array as PropType<string[]>,
-    default: ["⌘", "1"],
-  },
 });
-const router = useRouter();
-
-const { shortCut, to } = toRefs(props);
+const { link } = toRefs(props);
 const isHover = ref(false);
-const showShortcut = ref(false);
+
+//STORE
+const store = useNavbarStore();
+const { showKeys, isSmall } = storeToRefs(store);
+const { toggleShowKeys } = store;
+
+//KEY PRESSED
+const { Ctrl, Meta, current } = useMagicKeys();
+const keys = computed(() => Array.from(current));
 
 const toggleHover = () => {
   isHover.value = !isHover.value;
 };
-const isSmall = computed(() => props.size !== "large");
 
-const { Meta, Ctrl } = useMagicKeys({
-  passive: false,
-  onEventFired(e) {
-    if (e.key === shortCut.value[1] && (e.metaKey || e.ctrlKey))
-      router.push(to.value);
-    if (e.metaKey || e.ctrlKey) e.preventDefault();
-  },
+watch([Ctrl, Meta, current], (v) => {
+  if (v && keys.value.includes(link.value.shortCut[1])) {
+    toggleShowKeys(false);
+    router.push(link.value.path);
+  }
 });
-
-watch([Meta, Ctrl], (v) => {
-  handleOpenChange();
-});
-
-function handleOpenChange() {
-  showShortcut.value = !showShortcut.value;
-}
 </script>
 
 <style scoped lang="scss">

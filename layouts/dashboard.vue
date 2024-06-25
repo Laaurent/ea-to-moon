@@ -1,17 +1,15 @@
 <template>
-  <ProviderInputKeys>
-    <main class="layout__dashboard">
-      <div>
-        <BaseNagivationBar />
+  <main class="layout__dashboard">
+    <div>
+      <BaseNagivationBar />
+    </div>
+    <div class="w-full flex flex-col">
+      <BaseHeaderBar class="layout__dashboard_child_header h-16 mb-4" />
+      <div class="layout__dashboard_child h-full bg-muted">
+        <slot />
       </div>
-      <div class="w-full flex flex-col">
-        <BaseHeaderBar class="layout__dashboard_child_header h-16 mb-4" />
-        <div class="layout__dashboard_child h-full bg-muted">
-          <slot />
-        </div>
-      </div>
-    </main>
-  </ProviderInputKeys>
+    </div>
+  </main>
 </template>
 <style scoped lang="scss">
 .layout__dashboard {

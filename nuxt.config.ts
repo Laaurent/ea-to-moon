@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "@formkit/auto-animate",
     "shadcn-nuxt",
     "@nuxtjs/color-mode",
+    "@pinia/nuxt",
   ],
   css: ["~/assets/css/main.scss"],
   vite: {
@@ -36,6 +37,9 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: "./components/ui/test",
+  },
+  pinia: {
+    storesDirs: ["./stores/**"],
   },
   colorMode: {
     classSuffix: "",
