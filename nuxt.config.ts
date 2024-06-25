@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  experimental: {
+    renderJsonPayloads: false,
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "nuxt-lucide-icons",

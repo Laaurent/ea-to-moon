@@ -1,31 +1,13 @@
 import { Home, LayoutDashboard, Bolt } from "lucide-vue-next";
 import type { INavbarLink } from "~/types/navigation";
+import { shallowRef } from "vue";
 
 export const useNavbarStore = defineStore("navbar", () => {
   // LINKS
-  const links = ref<INavbarLink[]>([
-    {
-      name: "Home",
-      path: "/",
-      icon: Home,
-      shortCut: ["⌘", "1"],
-      position: "top",
-    },
-    {
-      name: "Dashboard",
-      path: "/dashboard",
-      icon: LayoutDashboard,
-      shortCut: ["⌘", "2"],
-      position: "top",
-    },
-    {
-      name: "Settings",
-      path: "/settings",
-      icon: Bolt,
-      shortCut: ["⌘", "9"],
-      position: "bottom",
-    },
-  ]);
+  const links = shallowRef<INavbarLink[]>([]);
+  function setLinks(value: INavbarLink[]) {
+    links.value = value;
+  }
 
   // NAVBAR SIZE
   const size = ref<"small" | "large">("small");
@@ -56,6 +38,7 @@ export const useNavbarStore = defineStore("navbar", () => {
 
   return {
     links,
+    setLinks,
     size,
     toggleSize,
     isSmall,

@@ -12,7 +12,12 @@
     </div>
 
     <div class="navbar__menu_bottom">
-      <BaseNagivationLink v-for="link in bottomLinks" :link :size />
+      <BaseNagivationLink
+        v-for="link in bottomLinks"
+        :icon="link.icon"
+        :link
+        :size
+      />
     </div>
     <UiSeparator class="my-2" />
     <BaseNagivationAvatar :size />
@@ -22,10 +27,36 @@
 <script setup lang="ts">
 import { useWindowSize, whenever, useMagicKeys } from "@vueuse/core";
 import { PanelLeft } from "lucide-vue-next";
+import { Home, LayoutDashboard, Bolt } from "lucide-vue-next";
 import { useNavbarStore } from "~/store/navbar";
+import type { INavbarLink } from "~/types/navigation";
 
 const { width } = useWindowSize();
 const { Ctrl, Meta } = useMagicKeys();
+
+const links = ref<INavbarLink[]>([
+  {
+    name: "Home",
+    path: "/",
+    icon: Home,
+    shortCut: ["⌘", "1"],
+    position: "top",
+  },
+  {
+    name: "Dashboard",
+    path: "/dashboard",
+    icon: LayoutDashboard,
+    shortCut: ["⌘", "2"],
+    position: "top",
+  },
+  {
+    name: "Settings",
+    path: "/settings",
+    icon: Bolt,
+    shortCut: ["⌘", "9"],
+    position: "bottom",
+  },
+]);
 
 // PROPS
 const topLinks = computed(() =>
@@ -37,8 +68,10 @@ const bottomLinks = computed(() =>
 
 // STORE
 const store = useNavbarStore();
-const { links, size } = storeToRefs(store);
-const { toggleSize, toggleShowKeys } = store;
+const { size } = storeToRefs(store);
+const { setLinks, toggleSize, toggleShowKeys } = store;
+
+setLinks(links.value);
 
 whenever(width, () => {
   if (width.value < 1024) {

@@ -57,7 +57,7 @@ const props = defineProps({
     default: "small",
   },
 });
-const { link } = toRefs(props);
+const { link } = reactive(props);
 const isHover = ref(false);
 
 //STORE
@@ -74,9 +74,9 @@ const toggleHover = () => {
 };
 
 watch([Ctrl, Meta, current], (v) => {
-  if (v && keys.value.includes(link.value.shortCut[1])) {
+  if (v && keys.value.includes(link.shortCut[1])) {
     toggleShowKeys(false);
-    router.push(link.value.path);
+    router.push(link.path);
   }
 });
 </script>
