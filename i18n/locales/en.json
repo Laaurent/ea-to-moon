@@ -1,0 +1,16 @@
+{
+  "links": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  },
+  "actions": {
+    "search": "Search",
+    "searchText": "Type a command or search...",
+    "close": "Close"
+  },
+  "sections": {
+    "pages": "Pages"
+  },
+  "noResults": "No results found."
+}

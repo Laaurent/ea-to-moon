@@ -49,8 +49,19 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   i18n: {
-    vueI18n: "./i18n.config.ts", // if you are using custom path, default
-    locales: ["en", "fr"], // used in URL path prefix
-    defaultLocale: "en", // default locale of your project for Nuxt pages and routings
+    vueI18n: "./i18n/i18n.config.ts",
+    strategy: "no_prefix",
+    locales: [
+      {
+        code: "en",
+        name: "English",
+        iso: "en-US",
+      },
+      {
+        code: "fr",
+        name: "Français",
+        iso: "fr-FR",
+      },
+    ],
   },
 });

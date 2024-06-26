@@ -31,21 +31,14 @@ const { Ctrl, Meta } = useMagicKeys();
 
 const links = ref<INavbarLink[]>([
   {
-    name: "Home",
-    path: "/",
-    icon: Home,
-    shortCut: ["⌘", "1"],
-    position: "top",
-  },
-  {
-    name: "Dashboard",
+    name: "dashboard",
     path: "/dashboard",
     icon: LayoutDashboard,
     shortCut: ["⌘", "2"],
     position: "top",
   },
   {
-    name: "Settings",
+    name: "settings",
     path: "/settings",
     icon: Bolt,
     shortCut: ["⌘", "9"],

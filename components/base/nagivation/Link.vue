@@ -4,7 +4,7 @@
       <NuxtLink
         @mouseenter="toggleHover"
         @mouseleave="toggleHover"
-        :to="link.path"
+        :to="localePath(link.path)"
         class="navigation__link group flex hover:bg-secondary text-muted-foreground hover:text-muted-foreground hover:font-medium"
         :class="{ isSmall }"
       >
@@ -17,7 +17,7 @@
         <span
           class="navigation__link_label text-muted-foreground group-hover:text-muted-foreground"
         >
-          {{ link.name }}
+          {{ $t(`links.${link.name}`) }}
         </span>
         <UiKbd
           class="nagivation__link_kbd z-50 ml-10"
@@ -30,7 +30,7 @@
     </template>
     <template v-slot:content>
       <span class="">
-        {{ link.name }}&nbsp;
+        {{ $t(`links.${link.name}`) }}&nbsp;
         <UiKbd>
           <span class="text-xs">{{ link.shortCut[0] }}</span>
           &nbsp;{{ link.shortCut[1] }}
@@ -44,6 +44,7 @@
 import { useNavbarStore } from "~/store/navbar";
 import { useMagicKeys } from "@vueuse/core";
 import type { INavbarLink } from "~/types/navigation";
+const localePath = useLocalePath();
 const router = useRouter();
 
 //PROPS

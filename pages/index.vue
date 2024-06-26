@@ -5,12 +5,13 @@
     <a href="https://nuxt.com/docs/getting-started/routing" target="_blank"
       >Learn more about Nuxt Routing</a
     >
-    <NuxtLink to="/dashboard">Go to dashboard</NuxtLink>
+    <NuxtLink :to="localePath('dashboard')">Go to dashboard</NuxtLink>
   </div>
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
+const localePath = useLocalePath();
 useSeoMeta({
   title: "[title]",
   description: "[description]",

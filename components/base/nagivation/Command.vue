@@ -8,16 +8,16 @@
       >
         <span class="flex items-center gap-2">
           <Search />
-          <span v-if="!isSmall">Rechercher</span>
+          <span v-if="!isSmall">{{ $t("actions.search") }}</span>
         </span>
         <UiKbd v-if="!isSmall"> <span class="text-xs">⌘</span>+K </UiKbd>
       </UiButton>
     </p>
     <UiCommandDialog v-model:open="showCommand">
-      <UiCommandInput placeholder="Type a command or search..." />
+      <UiCommandInput :placeholder="$t('actions.searchText')" />
       <UiCommandList>
-        <UiCommandEmpty>No results found.</UiCommandEmpty>
-        <UiCommandGroup heading="Pages">
+        <UiCommandEmpty>{{ $t("noResults") }}</UiCommandEmpty>
+        <UiCommandGroup :heading="$t('sections.pages')">
           <UiCommandItem
             v-for="link in links"
             :value="link.name"
@@ -25,11 +25,11 @@
             @click="routeTo(link.path)"
           >
             <component :is="link.icon" size="16" />
-            <span>{{ link.name }}</span>
+            <span> {{ $t(`links.${link.name}`) }}</span>
           </UiCommandItem>
         </UiCommandGroup>
         <UiCommandSeparator />
-        <UiCommandGroup heading="Settings">
+        <UiCommandGroup heading="[Settings]">
           <UiCommandItem value="profile"> Profile </UiCommandItem>
           <UiCommandItem value="billing"> Billing </UiCommandItem>
           <UiCommandItem value="settings"> Settings </UiCommandItem>
@@ -44,6 +44,7 @@ import { useNavbarStore } from "~/store/navbar";
 import { Search } from "lucide-vue-next";
 
 const router = useRouter();
+const localePath = useLocalePath();
 
 // STORE
 const store = useNavbarStore();
@@ -63,6 +64,6 @@ watch([Meta_K, Ctrl_K], (v) => {
 
 function routeTo(link: string) {
   toggleShowCommand();
-  router.push(link);
+  router.push(localePath(link));
 }
 </script>

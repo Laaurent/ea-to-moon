@@ -1,0 +1,16 @@
+{
+  "links": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres"
+  },
+  "actions": {
+    "search": "Rechercher",
+    "searchText": "Tapez une commande ou recherchez...",
+    "close": "Fermer"
+  },
+  "sections": {
+    "pages": "Pages"
+  },
+  "noResults": "Aucun résultat trouvé."
+}
