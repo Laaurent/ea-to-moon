@@ -1,28 +1,35 @@
 <template>
   <nav class="navbar__container">
-    <div class="navbar__header h-16 flex items-center">
+    <div class="navbar__header mb-4 flex items-center mt-4">
       <UiButton @click="toggleSize()" variant="ghost" size="icon">
         <PanelLeft class="w-4 h-4" />
       </UiButton>
     </div>
-    <UiSeparator class="my-2" />
-    <div class="navbar__menu">
-      <BaseNagivationCommand :size class="w-full mb-2" />
-      <BaseNagivationLink v-for="link in topLinks" :link :size />
+
+    <!-- top -->
+    <div class="navbar__menu gap-1">
+      <BaseNagivationCommand :size class="w-full" />
+      <UiSeparator class="my-1" />
+      <BaseNagivationLink v-for="link in topLinks" :link />
     </div>
 
+    <UiSeparator class="my-2" />
+
+    <!-- bottom -->
     <div class="navbar__menu_bottom">
-      <BaseNagivationLink v-for="link in bottomLinks" :link :size />
+      <BaseNagivationLang />
+      <BaseNagivationTheme />
+      <BaseNagivationLink v-for="link in bottomLinks" :link />
     </div>
     <UiSeparator class="my-2" />
-    <BaseNagivationAvatar :size />
+    <BaseNagivationAvatar />
   </nav>
 </template>
 
 <script setup lang="ts">
 import { useWindowSize, whenever, useMagicKeys } from "@vueuse/core";
 import { PanelLeft } from "lucide-vue-next";
-import { Home, LayoutDashboard, Bolt } from "lucide-vue-next";
+import { Home, Inbox, Layers, Bolt } from "lucide-vue-next";
 import { useNavbarStore } from "~/store/navbar";
 import type { INavbarLink } from "~/types/navigation";
 
@@ -31,9 +38,16 @@ const { Ctrl, Meta } = useMagicKeys();
 
 const links = ref<INavbarLink[]>([
   {
-    name: "dashboard",
-    path: "/dashboard",
-    icon: LayoutDashboard,
+    name: "home",
+    path: "/",
+    icon: Home,
+    shortCut: ["⌘", "1"],
+    position: "top",
+  },
+  {
+    name: "workspaces",
+    path: "/workspaces",
+    icon: Layers,
     shortCut: ["⌘", "2"],
     position: "top",
   },
@@ -52,6 +66,9 @@ const topLinks = computed(() =>
 );
 const bottomLinks = computed(() =>
   links.value.filter((link) => link.position === "bottom")
+);
+const workspacesLinks = computed(() =>
+  links.value.filter((link) => link.position === "workspaces")
 );
 
 // STORE

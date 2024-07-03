@@ -4,8 +4,3 @@
     <p>Welcome to the Settings</p>
   </div>
 </template>
-<script setup lang="ts">
-definePageMeta({
-  layout: "dashboard",
-});
-</script>

@@ -1,7 +1,10 @@
 {
   "links": {
     "home": "Home",
+    "workspaces": "Workspaces",
     "dashboard": "Dashboard",
+    "lang": "Language",
+    "apparence": "Apparence",
     "settings": "Settings"
   },
   "actions": {

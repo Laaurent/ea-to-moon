@@ -3,5 +3,10 @@ export interface INavbarLink {
   path: string;
   icon: any;
   shortCut: string[];
-  position: "top" | "bottom";
+  position: "top" | "bottom" | "workspaces";
+}
+
+export interface IToggle {
+  name: string;
+  icon: any;
 }

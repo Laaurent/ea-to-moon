@@ -4,8 +4,8 @@
       <BaseNagivationBar />
     </div>
     <div class="w-full flex flex-col">
-      <BaseHeaderBar class="layout__dashboard_child_header h-16 mb-4" />
       <div class="layout__dashboard_child h-full bg-muted">
+        <BaseHeaderBar class="layout__dashboard_child_header mb-4" />
         <slot />
       </div>
     </div>
@@ -18,7 +18,8 @@
   display: flex;
   gap: $dashboard_padding;
   .layout__dashboard_child_header {
-    padding: $dashboard_padding 0;
+    padding: calc($dashboard_padding/2) 0;
+    height: 40px;
   }
   .layout__dashboard_child {
     flex: 1;

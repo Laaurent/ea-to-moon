@@ -11,6 +11,8 @@
   </div>
 </template>
 <script setup lang="ts">
+import { useNavbarStore } from "~/store/navbar";
+
 const props = defineProps({
   firstName: {
     type: String,
@@ -20,12 +22,10 @@ const props = defineProps({
     type: String,
     default: "Doe",
   },
-  size: {
-    type: String,
-    default: "small",
-  },
 });
-const isSmall = computed(() => props.size !== "large");
+
+const store = useNavbarStore();
+const { isSmall } = storeToRefs(store);
 </script>
 <style scoped lang="scss">
 .avatar__container {

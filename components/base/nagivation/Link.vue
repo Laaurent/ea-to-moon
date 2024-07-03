@@ -53,10 +53,6 @@ const props = defineProps({
     type: Object as PropType<INavbarLink>,
     required: true,
   },
-  size: {
-    type: String,
-    default: "small",
-  },
 });
 const { link } = reactive(props);
 const isHover = ref(false);
@@ -91,7 +87,7 @@ watch([Ctrl, Meta, current], (v) => {
 
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 
   border-radius: var(--radius);
 
