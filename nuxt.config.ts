@@ -40,7 +40,7 @@ export default defineNuxtConfig({
      * Directory that the component lives in.
      * @default "./components/ui"
      */
-    componentDir: "./components/ui/test",
+    componentDir: "./components/ui/test/",
   },
   pinia: {
     storesDirs: ["./stores/**"],

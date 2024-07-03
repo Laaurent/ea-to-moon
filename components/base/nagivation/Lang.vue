@@ -3,22 +3,15 @@
     <template v-slot:trigger>
       <UiDropdownMenu>
         <UiDropdownMenuTrigger as-child>
-          <UiButton
-            variant="ghost"
-            size="icon"
-            class="w-full justify-start px-2 gap-4"
-            :class="{ isSmall }"
-          >
-            <span
-              class="h-6 w-6 text-center navigation__link_icon text-muted-foreground group-hover:text-muted-foreground"
-            >
-              {{ locale.toLocaleUpperCase() }}
-            </span>
-            <span
-              class="navigation__label text-muted-foreground group-hover:text-muted-foreground"
-            >
-              {{ $t(`links.lang`) }}
-            </span>
+          <UiButton as-child>
+            <div class="bar__item relative" :class="{ isSmall }">
+              <span class="bar__item_icon group-hover:text-muted-foreground">
+                {{ locale.toLocaleUpperCase() }}
+              </span>
+              <span class="bar__item_label group-hover:text-muted-foreground">
+                {{ $t(`links.lang`) }}
+              </span>
+            </div>
           </UiButton>
         </UiDropdownMenuTrigger>
         <UiDropdownMenuContent align="start">
@@ -47,12 +40,3 @@ const availableLocales = computed(() => {
   return locales.value.filter((i) => i.code !== locale.value);
 });
 </script>
-<style scoped lang="scss">
-.isSmall {
-  width: 42px;
-  .navigation__label {
-    display: none;
-    opacity: 0;
-  }
-}
-</style>

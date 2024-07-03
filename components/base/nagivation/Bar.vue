@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar__container">
+  <nav class="navbar__container h-full">
     <div class="navbar__header mb-4 flex items-center mt-4">
       <UiButton @click="toggleSize()" variant="ghost" size="icon">
         <PanelLeft class="w-4 h-4" />
@@ -7,7 +7,7 @@
     </div>
 
     <!-- top -->
-    <div class="navbar__menu gap-1">
+    <div class="navbar__items navbar__menu gap-1">
       <BaseNagivationCommand :size class="w-full" />
       <UiSeparator class="my-1" />
       <BaseNagivationLink v-for="link in topLinks" :link />
@@ -16,7 +16,7 @@
     <UiSeparator class="my-2" />
 
     <!-- bottom -->
-    <div class="navbar__menu_bottom">
+    <div class="navbar__items navbar__menu_bottom mt-auto">
       <BaseNagivationLang />
       <BaseNagivationTheme />
       <BaseNagivationLink v-for="link in bottomLinks" :link />
@@ -96,14 +96,42 @@ watch([Ctrl, Meta], (v) => {
   display: flex;
   flex-direction: column;
 }
-.navbar__container {
-  height: 100%;
+</style>
+<style lang="scss">
+.bar__item {
+  cursor: pointer;
+  width: 440px;
+  height: 42px;
+  padding: 0.5rem;
 
-  .navbar__menu_bottom {
-    margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
 
-    .navbar__avatar {
-      border: $border;
+  background: none;
+  border-radius: var(--radius);
+  color: var(--muted-foreground);
+
+  transition: $transition_all;
+  .bar__item_icon {
+    width: 24px;
+    height: 24px;
+  }
+  &:hover {
+    /* background-color: var(--bg-secondary); */
+    color: var(--foreground);
+    font-weight: 500;
+  }
+
+  &.isSmall {
+    width: 42px;
+    .bar__item_label {
+      display: none;
+      opacity: 0;
+    }
+    .nagivation__link_kbd {
+      margin-left: auto;
     }
   }
 }

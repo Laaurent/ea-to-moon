@@ -5,22 +5,17 @@
         @mouseenter="toggleHover"
         @mouseleave="toggleHover"
         :to="localePath(link.path)"
-        class="navigation__link group flex hover:bg-secondary text-muted-foreground hover:text-muted-foreground hover:font-medium"
+        class="bar__item"
         :class="{ isSmall }"
       >
-        <span
-          class="navigation__link_icon text-muted-foreground group-hover:text-muted-foreground"
-          :class="isSmall ? 'mr-5' : ''"
-        >
+        <span class="bar__item_icon" :class="isSmall ? 'mr-5' : ''">
           <component :is="link.icon" />
         </span>
-        <span
-          class="navigation__link_label text-muted-foreground group-hover:text-muted-foreground"
-        >
+        <span class="bar__item_label">
           {{ $t(`links.${link.name}`) }}
         </span>
         <UiKbd
-          class="nagivation__link_kbd z-50 ml-10"
+          class="nagivation__link_kbd"
           v-if="(isHover && !isSmall) || showKeys"
         >
           <span class="text-xs">{{ link.shortCut[0] }}</span
@@ -79,42 +74,13 @@ watch([Ctrl, Meta, current], (v) => {
 </script>
 
 <style scoped lang="scss">
-.navigation__link {
-  cursor: pointer;
-  width: 440px;
-  height: 42px;
-  padding: 0.5rem;
-
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-
-  border-radius: var(--radius);
-
-  transition: $transition_all;
-  .navigation__link_icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  &.isSmall {
-    width: 42px;
-    .navigation__link_label,
-    .navigation__link_dot {
-      display: none;
-      opacity: 0;
-    }
-  }
-
+.bar__item {
   &.router-link-active {
     font-weight: 500;
     position: relative;
     border: 1px solid var(--accent);
+    color: var(--foreground);
 
-    .navigation__link_icon,
-    .navigation__link_label {
-      color: var(--foreground);
-    }
     &:after {
       content: "";
       position: absolute;
@@ -133,6 +99,7 @@ watch([Ctrl, Meta, current], (v) => {
     }
   }
   .nagivation__link_kbd {
+    z-index: 50;
     margin-left: auto;
   }
 }

@@ -20,10 +20,12 @@ const route = useRoute();
           <Home class="h-4 w-4" />
         </BreadcrumbLink>
       </BreadcrumbItem>
-      <BreadcrumbSeparator />
-      <BreadcrumbItem>
-        <BreadcrumbPage>{{ $t(`links.${route.name}`) }}</BreadcrumbPage>
-      </BreadcrumbItem>
+      <template v-if="route.name !== 'index'">
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>{{ $t(`links.${route.name}`) }}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </template>
     </BreadcrumbList>
   </Breadcrumb>
 </template>
