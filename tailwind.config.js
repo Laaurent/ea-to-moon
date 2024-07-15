@@ -14,6 +14,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+      secondary: ["Geist"],
+    },
     extend: {
       colors: {
         border: "var(--border)",

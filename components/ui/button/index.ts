@@ -14,8 +14,12 @@ export const buttonVariants = cva(
           "border border-input bg-background hover:bg-secondary hover:text-accent-foreground",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        input:
+          "bg-background border border-border text-secondary-foreground hover:border-muted-foreground",
         ghost: "hover:bg-secondary hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        dashed:
+          "bg-background border border-dashed border-border text-secondary-foreground  hover:border-muted-foreground",
       },
       size: {
         default: "h-10 px-4 py-2",

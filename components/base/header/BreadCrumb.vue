@@ -10,6 +10,8 @@ import {
 import { Home } from "lucide-vue-next";
 const localPath = useLocalePath();
 const route = useRoute();
+
+console.log(route);
 </script>
 
 <template>
@@ -23,7 +25,11 @@ const route = useRoute();
       <template v-if="route.name !== 'index'">
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>{{ $t(`links.${route.name}`) }}</BreadcrumbPage>
+          <BreadcrumbPage>
+            <NuxtLink :to="localPath(`/${route.name}`)">
+              {{ $t(`links.${route.name}`) }}
+            </NuxtLink>
+          </BreadcrumbPage>
         </BreadcrumbItem>
       </template>
     </BreadcrumbList>

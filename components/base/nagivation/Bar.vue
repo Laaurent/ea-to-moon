@@ -100,7 +100,7 @@ watch([Ctrl, Meta], (v) => {
 <style lang="scss">
 .bar__item {
   cursor: pointer;
-  width: 440px;
+  width: 360px;
   height: 42px;
   padding: 0.5rem;
 
@@ -122,6 +122,7 @@ watch([Ctrl, Meta], (v) => {
     /* background-color: var(--bg-secondary); */
     color: var(--foreground);
     font-weight: 500;
+    background-color: var(--secondary);
   }
 
   &.isSmall {

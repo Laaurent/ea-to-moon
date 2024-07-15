@@ -15,5 +15,45 @@
   "sections": {
     "pages": "Pages"
   },
-  "noResults": "Aucun résultat trouvé."
+  "ressources": {
+    "all": "Tous",
+    "filterBy": "Filtrer par",
+    "sortBy": "Trier par"
+  },
+  "projects": {
+    "title": "Projets",
+    "description": "Manager vos fichiers",
+    "noResult": "Aucun projet trouvé",
+    "noResultDesc": "Vous pouvez créer un projet en cliquant sur le bouton ci-dessous.",
+    "create": "Créer un projet",
+    "folders": {
+      "title": "Dossiers",
+      "noResult": "Aucun dossier trouvé",
+      "noResultDesc": "Vous pouvez créer un dossier en cliquant sur le bouton ci-dessous.",
+      "create": "Créer un dossier"
+    },
+    "reports": {
+      "title": "Rapports",
+      "noResult": "Aucun rapport trouvé",
+      "noResultDesc": "Vous pouvez créer un rapport en cliquant sur le bouton ci-dessous.",
+      "create": "Créer un rapport"
+    },
+    "workspaces": {
+      "title": "Workspaces",
+      "select": "Sélectionner un workspace",
+      "noResult": "Aucun workspace trouvé",
+      "noResultDesc": "Vous pouvez créer un workspace en cliquant sur le bouton ci-dessous.",
+      "create": "Créer un workspace"
+    }
+  },
+
+  "sample": {
+    "create": "Créer un exemple"
+  },
+  "error": {
+    "404": "Page non trouvée",
+    "404Desc": "La page que vous recherchez n'existe pas.",
+    "redirectBack": "Retour",
+    "redirectHome": "Rediriger vers l'accueil"
+  }
 }

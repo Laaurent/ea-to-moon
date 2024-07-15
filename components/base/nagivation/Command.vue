@@ -4,7 +4,7 @@
       <UiButton
         @click="toggleShowCommand()"
         variant="ghost"
-        class="flex items-center gap-2 px-2 w-full justify-between text-muted-foreground hover:text-secondary-foreground border bg-secondary"
+        class="flex items-center gap-2 px-2 w-full justify-between text-muted-foreground hover:text-secondary-foreground border bg-muted"
       >
         <span class="flex items-center gap-2">
           <Search />

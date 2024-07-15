@@ -15,5 +15,45 @@
   "sections": {
     "pages": "Pages"
   },
-  "noResults": "No results found."
+  "ressources": {
+    "all": "All",
+    "filterBy": "Filter by",
+    "sortBy": "Sort by"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Manage your files projects",
+    "noResult": "No project found",
+    "noResultDesc": "You can create a project by clicking on the button below.",
+    "create": "Create a project",
+    "folders": {
+      "title": "Folders",
+      "noResult": "No folder found",
+      "noResultDesc": "You can create a folder by clicking on the button below.",
+      "create": "Create a folder"
+    },
+    "reports": {
+      "title": "Reports",
+      "noResult": "No report found",
+      "noResultDesc": "You can create a report by clicking on the button below.",
+      "create": "Create a report"
+    },
+    "workspaces": {
+      "title": "Workspaces",
+      "select": "Select a workspace",
+      "noResult": "No workspaces found",
+      "noResultDesc": "You can create a workspace by clicking on the button below.",
+      "create": "Create a workspace"
+    }
+  },
+
+  "sample": {
+    "create": "Create a sample"
+  },
+  "error": {
+    "404": "Page not found",
+    "404Desc": "The page you are looking for does not exist.",
+    "redirectBack": "Redirect back",
+    "redirectHome": "Redirect to home"
+  }
 }
