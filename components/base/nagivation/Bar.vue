@@ -111,7 +111,7 @@ watch([Ctrl, Meta], (v) => {
 
   background: none;
   border-radius: var(--radius);
-  color: var(--muted-foreground);
+  color: hsl(var(--muted-foreground));
 
   transition: $transition_all;
   .bar__item_icon {
@@ -120,9 +120,9 @@ watch([Ctrl, Meta], (v) => {
   }
   &:hover {
     /* background-color: var(--bg-secondary); */
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     font-weight: 500;
-    background-color: var(--secondary);
+    background-color: hsl(var(--secondary));
   }
 
   &.isSmall {

@@ -18,7 +18,13 @@
   "ressources": {
     "all": "All",
     "filterBy": "Filter by",
-    "sortBy": "Sort by"
+    "sortBy": {
+      "title": "Sort by",
+      "name_asc": "Name (asc)",
+      "name_desc": "Name (desc)",
+      "created_at_asc": "Created at (asc)",
+      "created_at_desc": "Created at (desc)"
+    }
   },
   "projects": {
     "title": "Projects",

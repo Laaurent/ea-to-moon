@@ -78,8 +78,9 @@ watch([Ctrl, Meta, current], (v) => {
   &.router-link-active {
     font-weight: 500;
     position: relative;
-    border: 1px solid var(--accent);
-    color: var(--foreground);
+    border: 1px solid hsl(var(--accent));
+    background-color: hsl(var(--accent));
+    color: hsl(var(--primary-foreground));
 
     &:after {
       content: "";
@@ -88,13 +89,13 @@ watch([Ctrl, Meta, current], (v) => {
       inset: 0;
       opacity: 0.2;
       border-radius: var(--radius);
-      box-shadow: 0 0 1em 0em var(--accent);
+      box-shadow: 0 0 1em 0em hsl(var(--accent));
       /*  transition: $transition_all */
     }
     &:hover {
       &:after {
         opacity: 0.4;
-        box-shadow: 0 0 1em 0em var(--accent);
+        box-shadow: 0 0 1em 0em hsl(var(--accent));
       }
     }
   }

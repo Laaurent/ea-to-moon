@@ -1,41 +1,67 @@
 <template>
-  <div class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 gap-2">
-    <!-- WORKSPACE -->
-    <UiSelect>
-      <UiSelectTrigger class="w-auto">
-        <UiSelectValue :placeholder="$t('projects.workspaces.select')" />
-      </UiSelectTrigger>
-      <UiSelectContent>
-        <UiSelectItem value="apple"> Apple </UiSelectItem>
-        <UiSelectItem value="banana"> Banana </UiSelectItem>
-        <UiSelectItem value="blueberry"> Blueberry </UiSelectItem>
-        <UiSelectItem value="grapes"> Grapes </UiSelectItem>
-        <UiSelectItem value="pineapple"> Pineapple </UiSelectItem>
-      </UiSelectContent>
-    </UiSelect>
+  <div class="grid-container items-center">
+    <!-- search -->
+    <div class="relative">
+      <UiInput
+        type="text"
+        v-model.lazy="params.name.value"
+        :placeholder="`${$t('actions.search')} ...`"
+        class="pl-10"
+      />
+      <span
+        class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
+      >
+        <Search class="size-6 text-muted-foreground" />
+      </span>
+    </div>
+    <!-- FILTERS -->
+    <div>
+      <UiBadge
+        class="mr-2"
+        v-for="param in Object.keys(params)"
+        variant="secondary"
+        >{{ param }} : {{ params[param].value }}</UiBadge
+      >
+    </div>
 
-    <div class="col-start-5 flex items-center justify-end gap-2 col-span-2">
+    <div class="grid-end flex justify-end gap-2">
       <!-- FILTER -->
-      <UiButton variant="dashed" class="min-w-52">
-        <Filter class="h-4 w-4 mr-2" />
-        <span>{{ $t(`ressources.filterBy`) }} </span>
-        <span>&nbsp;:&nbsp;</span>
-        <span class="text-muted-foreground">
-          {{ $t(`ressources.all`) }}
-        </span>
-      </UiButton>
+
       <!-- SORT -->
-      <UiButton variant="dashed" class="min-w-52">
-        <ArrowUpDown class="h-4 w-4 mr-2" />
-        <span>{{ $t(`ressources.sortBy`) }} </span>
-        <span>&nbsp;:&nbsp;</span>
-        <span class="font-secondary text-muted-foreground">
-          {{ $t(`ressources.all`) }}
-        </span>
-      </UiButton>
+      <UiDropdownMenu>
+        <UiDropdownMenuTrigger as-child>
+          <UiButton variant="dashed" class="min-w-52">
+            <ArrowUpDown class="h-4 w-4 mr-2" />
+            <span>{{ $t(`ressources.sortBy.title`) }} </span>
+            <span>&nbsp;:&nbsp;</span>
+            <span class="font-secondary text-muted-foreground">
+              {{ $t(`ressources.sortBy.${selectedSort}`) }}
+            </span>
+          </UiButton>
+        </UiDropdownMenuTrigger>
+        <UiDropdownMenuContent class="w-56">
+          <UiDropdownMenuLabel>{{
+            $t(`ressources.sortBy.title`)
+          }}</UiDropdownMenuLabel>
+          <UiDropdownMenuSeparator />
+          <UiDropdownMenuRadioGroup v-model="selectedSort">
+            <UiDropdownMenuRadioItem
+              v-for="option in sortOptions"
+              :key="option"
+              :value="option"
+            >
+              {{ $t(`ressources.sortBy.${option}`) }}
+            </UiDropdownMenuRadioItem>
+          </UiDropdownMenuRadioGroup>
+        </UiDropdownMenuContent>
+      </UiDropdownMenu>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { Filter, ArrowUpDown } from "lucide-vue-next";
+import { ArrowUpDown, Search } from "lucide-vue-next";
+import { useProjectStore } from "@/store/project";
+
+const projectStore = useProjectStore();
+const { params, sortOptions, selectedSort } = storeToRefs(projectStore);
 </script>

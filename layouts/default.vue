@@ -5,7 +5,7 @@
     </div>
     <div class="w-full">
       <div
-        class="layout__dashboard_child h-full bg-background flex flex-col gap-4 justify-start"
+        class="relative layout__dashboard_child h-full bg-background flex flex-col gap-4 justify-start"
       >
         <!--  <BaseHeaderBar class="layout__dashboard_child_header" /> -->
         <slot />

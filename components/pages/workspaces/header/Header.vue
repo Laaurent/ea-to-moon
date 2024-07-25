@@ -1,36 +1,26 @@
 <template>
-  <div class="mb-4">
-    <header
-      class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 gap-2 w-full h-10"
-    >
-      <!-- TITLE -->
-      <PagesWorkspacesRessourcesFolder
-        :title="$t(`projects.title`)"
-        :description="$t(`projects.description`)"
-        class="col-span-3"
-        :icon="Layers"
-      />
-      <!-- SEARCHBAR -->
-      <div class="relative items-center col-start-5 w-full">
-        <UiInput
-          id="search"
-          type="text"
-          placeholder="Search..."
-          class="pl-10"
-        />
-        <span
-          class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
-        >
-          <Search class="size-6 text-muted-foreground" />
-        </span>
-      </div>
-    </header>
-
-    <UiSeparator class="my-2" />
-
-    <!-- ACTIONS -->
-    <PagesWorkspacesHeaderActions />
-  </div>
+  <header class="grid-container w-full h-8 mb-4">
+    <!-- TITLE -->
+    <PagesWorkspacesRessourcesFolder
+      :title="$t(`projects.title`)"
+      :description="$t(`projects.description`)"
+      class=""
+      :icon="Layers"
+    />
+    <!-- Workspaces -->
+    <UiSelect class="relative">
+      <UiSelectTrigger class="grid-end w-full">
+        <UiSelectValue :placeholder="$t('projects.workspaces.select')" />
+      </UiSelectTrigger>
+      <UiSelectContent>
+        <UiSelectItem value="apple"> Apple </UiSelectItem>
+        <UiSelectItem value="banana"> Banana </UiSelectItem>
+        <UiSelectItem value="blueberry"> Blueberry </UiSelectItem>
+        <UiSelectItem value="grapes"> Grapes </UiSelectItem>
+        <UiSelectItem value="pineapple"> Pineapple </UiSelectItem>
+      </UiSelectContent>
+    </UiSelect>
+  </header>
   <UiSeparator class="my-2" />
 </template>
 <script setup lang="ts">

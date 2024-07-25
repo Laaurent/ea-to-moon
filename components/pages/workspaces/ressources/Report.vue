@@ -13,8 +13,8 @@ import { Ellipsis, Home } from "lucide-vue-next";
         </UiButton>
       </div>
       <div class="flex flex-wrap items-center gap-1">
-        <UiBadge variant="secondary">#provider</UiBadge>
-        <UiBadge variant="secondary">#provider</UiBadge>
+        <UiBadge variant="secondary" class="">#provider</UiBadge>
+        <UiBadge variant="secondary" class="">#provider</UiBadge>
       </div>
     </footer>
   </article>
